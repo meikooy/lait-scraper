@@ -1,0 +1,10 @@
+{
+	"scripts": {
+		"scrape": "node index.js"
+	},
+  "dependencies": {
+    "algoliasearch": "^3.24.3",
+    "crawler": "^1.0.5",
+    "dotenv": "^4.0.0"
+  }
+}
