@@ -12,8 +12,8 @@ var fromYear = 1700;
 var FINLEX_BASE = 'http://www.finlex.fi';
 
 
-var laws = [];
-var sections = [];
+var lawCount = 0;
+var sectionCount = 0;
 
 var parseYearCollection = function($, year) {
 	$('.doc').each(function(index, elem) {
@@ -43,9 +43,9 @@ var parseLaw = function($, law) {
 		objectID: law.name
 	};
 
-	laws.push(l);
-	lawIndex.addObject(l);
-	console.log('Laws: ' + laws.length);
+	lawCount++;
+	//lawIndex.addObject(l);
+	console.log('Laws: ' + lawCount);
 
 	// Find all sections
 	var $lastSectionHeader = null;
@@ -62,10 +62,9 @@ var parseLaw = function($, law) {
 						objectID: law.name + '§' + $lastSectionHeader.attr('id').trim()
 					};
 
-					sections.push(section);
-
-					sectionIndex.addObject(section);
-					console.log('Sections: ' + sections.length);
+					sectionCount++;
+					//sectionIndex.addObject(section);
+					console.log('Sections: ' + sectionCount);
 				}
 			}
 
@@ -75,7 +74,7 @@ var parseLaw = function($, law) {
 };
 
 var c = new Crawler({
-    maxConnections : 5,
+    maxConnections : 50,
     callback : function (error, res, done) {
         if(error) console.log('Failed. ' + res.type + ' ' + error);
         else {
